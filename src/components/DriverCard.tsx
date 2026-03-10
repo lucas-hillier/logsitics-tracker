@@ -6,14 +6,14 @@ const DriverCard = ({ driver }: { driver: Driver }) => {
       style={{
         border: "1px solid #ccc",
         borderRadius: "5px",
-        padding: "0px 20px",
+        padding: "0px 10px",
         cursor: "pointer",
         userSelect: "none",
-        marginTop: "20px",
+        margin: "0.5rem",
       }}
       onClick={() => {}}
     >
-      <h2
+      <h3
         style={{
           fontSize: "1.5em",
           fontWeight: "700",
@@ -21,7 +21,7 @@ const DriverCard = ({ driver }: { driver: Driver }) => {
         }}
       >
         {driver.name}
-      </h2>
+      </h3>
       <p>
         <strong>Location:</strong> {driver.latitude.toFixed(4)},{" "}
         {driver.longitude.toFixed(4)}
