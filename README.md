@@ -45,3 +45,4 @@ npx tsx server/server.ts
 | **No responsive design** | The layout is built for desktop/laptop viewports only.                                                                                     |
 | **Hard-coded locations** | All origin and destination points are within NL, Canada, with no way to extend them dynamically.                                           |
 | **Static driver roster** | Drivers are fixed at five. There is no way to add, remove, or manage drivers at runtime.                                                   |
+| **Inaccurate ETAs**      | ETAs are not calculated from actual distances or road paths between points and should not be treated as reliable estimates.                |
