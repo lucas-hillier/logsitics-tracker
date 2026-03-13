@@ -24,7 +24,7 @@ export const useMapMarkers = (
     const map = mapRef.current;
     if (!map || drivers.length === 0) return;
 
-    selectedIdRef.current = selectedDriverId; // ✅ Fix 1: moved inside useEffect
+    selectedIdRef.current = selectedDriverId;
 
     drivers.forEach((driver) => {
       const isSelected = driver.id === selectedDriverId;
