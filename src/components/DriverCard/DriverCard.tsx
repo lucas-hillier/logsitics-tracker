@@ -4,7 +4,7 @@ import type { RootState } from "../../store/store";
 import { useDriverAction } from "../../hooks/useDriverAction";
 import { handleModalConfirm } from "./DriverCard.helpers";
 import DeliveryModal from "../modals/DeliveryModal";
-import { DriverCardActions } from "./DriverCardActions";
+import DriverCardActions from "./DriverCardActions";
 import { STATUS_COLORS } from "../../constants";
 import type { Driver } from "../../types";
 
