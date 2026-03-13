@@ -35,12 +35,13 @@ npx tsx server/server.ts
 
 ## Trade-offs & Known Limitations
 
-| Area                     | Detail                                                                                           |
-| ------------------------ | ------------------------------------------------------------------------------------------------ |
-| **Driver movement**      | Position is linearly interpolated between two points, not routed along actual roads.             |
-| **No persistence**       | Restarting the server resets all drivers to their initial positions.                             |
-| **Mocked data**          | The server and all initial driver data are mocked.                                               |
-| **Marker overlap**       | Drivers at the same coordinates stack on the map, obscuring one another.                         |
-| **No responsive design** | The layout is built for desktop/laptop viewports only.                                           |
-| **Hard-coded locations** | All origin and destination points are within NL, Canada, with no way to extend them dynamically. |
-| **Static driver roster** | Drivers are fixed at five. There is no way to add, remove, or manage drivers at runtime.         |
+| Area                     | Detail                                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Driver movement**      | Position is linearly interpolated between two points, not routed along actual roads.                                                       |
+| **No persistence**       | Restarting the server resets all drivers to their initial positions.                                                                       |
+| **Mocked data**          | All driver data, locations, and delivery states are statically mocked — there is no real data source.                                      |
+| **No backend**           | There is no real backend. The server and WebSocket are mocked, meaning no business logic, authentication, or database connectivity exists. |
+| **Marker overlap**       | Drivers at the same coordinates stack on the map, obscuring one another.                                                                   |
+| **No responsive design** | The layout is built for desktop/laptop viewports only.                                                                                     |
+| **Hard-coded locations** | All origin and destination points are within NL, Canada, with no way to extend them dynamically.                                           |
+| **Static driver roster** | Drivers are fixed at five. There is no way to add, remove, or manage drivers at runtime.                                                   |
