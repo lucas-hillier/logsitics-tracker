@@ -11,7 +11,7 @@ export const useDriverAction = (driverId: string) => {
   return (
     type: string,
     driverIds: string[],
-    updates: Array<Partial<Driver> & { id: string }>,
+    updates: (Partial<Driver> & { id: string })[],
     rest?: Record<string, unknown>,
   ) => {
     const actionId = makeId();

@@ -27,7 +27,9 @@ const AssignDeliveryModal = ({
         Destination
         <select
           value={destinationKey}
-          onChange={(e) => setDestinationKey(e.target.value)}
+          onChange={(e) => {
+            setDestinationKey(e.target.value);
+          }}
           style={{
             width: "100%",
             padding: "6px 8px",
@@ -46,7 +48,9 @@ const AssignDeliveryModal = ({
         </select>
       </label>
       <ModalFooter
-        onConfirm={() => onConfirm(destinationKey)}
+        onConfirm={() => {
+          onConfirm(destinationKey);
+        }}
         onCancel={onCancel}
       />
     </>

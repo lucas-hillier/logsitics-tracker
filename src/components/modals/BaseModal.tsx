@@ -18,7 +18,9 @@ const BaseModal = ({ onClose, children }: BaseModalProps) => (
   >
     <div
       style={{ background: "#fff", borderRadius: 8, padding: 24, width: 300 }}
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
     >
       {children}
     </div>

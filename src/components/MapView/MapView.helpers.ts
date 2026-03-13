@@ -10,7 +10,7 @@ export const makeIcon = (driver: Driver, isSelected: boolean) =>
     html: `
       <div style="
         width:36px;height:36px;border-radius:50%;
-        background:${STATUS_COLORS[driver.status] ?? "#888"};
+        background:${STATUS_COLORS[driver.status]};
         border:${isSelected ? "3px solid #000" : "2px solid #fff"};
         display:flex;align-items:center;justify-content:center;
         color:#fff;font-weight:700;font-size:13px;

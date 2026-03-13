@@ -19,7 +19,9 @@ const NEXT_DIRECTION: Record<SortDirection, SortDirection> = {
 export const useDriverSort = () => {
   const [sortDirection, setSortDirection] = useState<SortDirection>("none");
 
-  const toggle = () => setSortDirection((prev) => NEXT_DIRECTION[prev]);
+  const toggle = () => {
+    setSortDirection((prev) => NEXT_DIRECTION[prev]);
+  };
 
   const sort = (drivers: Driver[]) => {
     if (sortDirection === "none") return drivers;

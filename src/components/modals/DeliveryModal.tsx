@@ -46,17 +46,17 @@ const DeliveryModal = ({
         <AssignDeliveryModal
           driverLat={driver.lat}
           driverLng={driver.lng}
-          onConfirm={(destinationKey) =>
-            onConfirm({ type: "assign", destinationKey })
-          }
+          onConfirm={(destinationKey) => {
+            onConfirm({ type: "assign", destinationKey });
+          }}
           onCancel={onCancel}
         />
       ) : (
         <ReassignDeliveryModal
           drivers={availableDrivers}
-          onConfirm={(toDriverId) =>
-            onConfirm({ type: "reassign", toDriverId })
-          }
+          onConfirm={(toDriverId) => {
+            onConfirm({ type: "reassign", toDriverId });
+          }}
           onCancel={onCancel}
         />
       )}

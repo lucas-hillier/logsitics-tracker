@@ -11,7 +11,9 @@ const FilterTabs = ({ active, onChange }: FilterTabsProps) => (
     {FILTERS.map((filter) => (
       <button
         key={filter}
-        onClick={() => onChange(filter)}
+        onClick={() => {
+          onChange(filter);
+        }}
         style={{
           padding: "4px 10px",
           borderRadius: 12,

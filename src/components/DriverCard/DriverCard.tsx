@@ -46,7 +46,7 @@ const DriverCard = ({ driver, isSelected, onSelect }: DriverCardProps) => {
           <span
             style={{
               fontSize: 11,
-              color: STATUS_COLORS[driver.status] ?? "#888",
+              color: STATUS_COLORS[driver.status],
               fontWeight: 600,
             }}
           >
@@ -67,7 +67,9 @@ const DriverCard = ({ driver, isSelected, onSelect }: DriverCardProps) => {
         <DriverCardActions
           driver={driver}
           onAction={dispatchAction}
-          onOpenModal={() => setShowModal(true)}
+          onOpenModal={() => {
+            setShowModal(true);
+          }}
         />
       </div>
 
@@ -79,7 +81,9 @@ const DriverCard = ({ driver, isSelected, onSelect }: DriverCardProps) => {
             handleModalConfirm(payload, driver, drivers, dispatchAction);
             setShowModal(false);
           }}
-          onCancel={() => setShowModal(false)}
+          onCancel={() => {
+            setShowModal(false);
+          }}
         />
       )}
     </>

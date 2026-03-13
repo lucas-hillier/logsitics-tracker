@@ -7,7 +7,7 @@ interface DriverCardActionsProps {
   onAction: (
     type: string,
     driverIds: string[],
-    updates: Array<Partial<Driver> & { id: string }>,
+    updates: (Partial<Driver> & { id: string })[],
   ) => void;
   onOpenModal: () => void;
 }
@@ -19,13 +19,15 @@ const DriverCardActions = ({
 }: DriverCardActionsProps) => (
   <div
     style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}
-    onClick={(e) => e.stopPropagation()}
+    onClick={(e) => {
+      e.stopPropagation();
+    }}
   >
     {driver.status === "Delivering" && (
       <>
         <ActionButton
           label="Pause"
-          onClick={() =>
+          onClick={() => {
             onAction(
               "PAUSE_DRIVER",
               [driver.id],
@@ -37,12 +39,12 @@ const DriverCardActions = ({
                   lng: driver.lng,
                 },
               ],
-            )
-          }
+            );
+          }}
         />
         <ActionButton
           label="Complete"
-          onClick={() =>
+          onClick={() => {
             onAction(
               "COMPLETE_DELIVERY",
               [driver.id],
@@ -54,8 +56,8 @@ const DriverCardActions = ({
                   progress: 1,
                 },
               ],
-            )
-          }
+            );
+          }}
         />
         <ActionButton label="Reassign" onClick={onOpenModal} />
       </>
@@ -65,7 +67,7 @@ const DriverCardActions = ({
       <>
         <ActionButton
           label="Resume"
-          onClick={() =>
+          onClick={() => {
             onAction(
               "RESUME_DRIVER",
               [driver.id],
@@ -77,8 +79,8 @@ const DriverCardActions = ({
                   lng: driver.lng,
                 },
               ],
-            )
-          }
+            );
+          }}
         />
         <ActionButton label="Reassign" onClick={onOpenModal} />
       </>

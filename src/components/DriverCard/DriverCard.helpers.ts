@@ -5,7 +5,7 @@ import type { ConfirmPayload } from "../../types";
 type DispatchAction = (
   type: string,
   driverIds: string[],
-  updates: Array<Partial<Driver> & { id: string }>,
+  updates: (Partial<Driver> & { id: string })[],
   rest?: Record<string, unknown>,
 ) => void;
 
@@ -47,7 +47,6 @@ export const handleModalConfirm = (
 
   if (payload.type === "assign" && payload.destinationKey) {
     const destination = LOCATIONS[payload.destinationKey];
-    if (!destination) return;
 
     const origin = {
       name: "Current Location",
