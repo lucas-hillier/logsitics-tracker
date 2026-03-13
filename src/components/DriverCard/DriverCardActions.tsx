@@ -12,7 +12,7 @@ interface DriverCardActionsProps {
   onOpenModal: () => void;
 }
 
-const DriverCardActions = ({
+export const DriverCardActions = ({
   driver,
   onAction,
   onOpenModal,
@@ -89,5 +89,3 @@ const DriverCardActions = ({
     )}
   </div>
 );
-
-export default DriverCardActions;
