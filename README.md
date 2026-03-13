@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# Driver Delivery Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time driver delivery management dashboard MVP built with **React**, **Redux Toolkit**, and **WebSockets**. Dispatchers can monitor, assign, reassign, pause, resume, and complete driver deliveries on an interactive live map.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup & Running
 
-## React Compiler
+```bash
+# Install dependencies
+npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Start the Vite frontend
+npm run dev
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start the WebSocket server (in a separate terminal)
+npx tsx server/server.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Architectural Decisions
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Redux** for global state (drivers, selection, filter, pending actions). Centralising state makes optimistic updates and rollbacks straightforward to reason about.
+
+- **WebSocket** connects once on app mount via `useWebSocket`. The server batches all drivers into a single message per tick to minimise message overhead.
+
+- **Optimistic UI** — a state snapshot is saved before each action is applied locally. If the server responds with `ACTION_ERROR`, the snapshot is restored and an error is surfaced to the user.
+
+- **Leaflet + OpenStreetMap** — free, no API key required, and straightforward to integrate with React.
+
+- **Single-page layout** — `DriverList` on the left, `MapView` on the right. Selecting a driver in either panel updates `selectedDriverId` in Redux, which both components read from.
+
+---
+
+## Trade-offs & Known Limitations
+
+| Area                     | Detail                                                                                           |
+| ------------------------ | ------------------------------------------------------------------------------------------------ |
+| **Driver movement**      | Position is linearly interpolated between two points, not routed along actual roads.             |
+| **No persistence**       | Restarting the server resets all drivers to their initial positions.                             |
+| **Mocked data**          | The server and all initial driver data are mocked.                                               |
+| **Marker overlap**       | Drivers at the same coordinates stack on the map, obscuring one another.                         |
+| **No responsive design** | The layout is built for desktop/laptop viewports only.                                           |
+| **Hard-coded locations** | All origin and destination points are within NL, Canada, with no way to extend them dynamically. |
+| **Static driver roster** | Drivers are fixed at five. There is no way to add, remove, or manage drivers at runtime.         |
