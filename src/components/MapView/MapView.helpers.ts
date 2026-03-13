@@ -1,4 +1,3 @@
-// utils/mapUtils.ts
 import L from "leaflet";
 import type { Driver } from "../../types";
 import { STATUS_COLORS } from "../../constants";

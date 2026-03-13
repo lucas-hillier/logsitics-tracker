@@ -1,4 +1,3 @@
-// hooks/useMapMarkers.ts
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import L from "leaflet";
